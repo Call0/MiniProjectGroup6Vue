@@ -11,8 +11,8 @@
                   <input type="text" v-model="name" placeholder="Train Name" name="name" class="input-css">
                   <input type="text" v-model="startLocation" placeholder="Start Location" name="endlocation" class="input-css">
                   <input type="text" v-model="endLocation" placeholder="End Location" name="startlocation" class="input-css">
-                  <input type="time" v-model="departureTime" placeholder="Departure Time" name="id" class="input-css">
-                  <input type="number" v-model="bogie" placeholder="Num Of Bogies" min=1 name="name" class="input-css">
+                  <input type="time" v-model="departureTime" placeholder="Departure Time" name="departuretime" class="input-css">
+                  <input type="number" v-model="bogie" placeholder="Num Of Bogies" min=1 name="bogie" class="input-css">
                   <button class="btn" @click="onsubmit">Add</button>
                 </div>
                 <div class="footer">
