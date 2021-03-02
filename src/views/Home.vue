@@ -21,7 +21,8 @@
           <div class="card-view">
           </div>
           <div class="card-view">
-          </div><div class="card-view">
+          </div>
+          <div class="card-view">
           </div>
           <div class="card-view">
           </div>

@@ -50,11 +50,11 @@ export default {
   },
   methods: {
     findage () {
-      var dobirth = new Date(this.dob)
-      var monthdiff = Date.now() - dobirth
-      var agedt = new Date(monthdiff)
-      var year = agedt.getUTCFullYear()
-      var age = Math.abs(year - 1970)
+      const dobirth = new Date(this.dob)
+      const monthdiff = Date.now() - dobirth
+      const agedt = new Date(monthdiff)
+      const year = agedt.getUTCFullYear()
+      const age = Math.abs(year - 1970)
       return age
     },
     mismatch () {
@@ -97,7 +97,6 @@ export default {
         userName: this.userName,
         password: this.password
       }
-      console.log(obj)
       if (this.validate()) {
         axios.post('http://10.177.68.60:8080/register', obj).then((res) => {
           console.log(res)

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import register from '@/views/register.vue'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
+import train from '@/views/train.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: home
+  },
+  {
+    path: '/train',
+    name: 'Train',
+    component: train
   }
 ]
 
