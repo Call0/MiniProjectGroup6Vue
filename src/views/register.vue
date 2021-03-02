@@ -43,6 +43,14 @@ export default {
     }
   },
   methods: {
+    findage () {
+      var dobirth = new Date(this.dob)
+      var monthdiff = Date.now() - dobirth
+      var agedt = new Date(monthdiff)
+      var year = agedt.getUTCFullYear()
+      var age = Math.abs(year - 1970)
+      return age
+    },
     mismatch () {
       if (this.confirmPassword !== this.password && this.confirmPassword !== '') {
         document.getElementById('mismatch-error').style.display = 'block'
@@ -52,7 +60,6 @@ export default {
     },
     validate () {
       if (this.firstName === '') {
-        console.log(this.firstName)
         return false
       } else if (this.dob === '') {
         return false
@@ -69,22 +76,22 @@ export default {
       } else if (this.password !== this.confirmPassword) {
         return false
       } else {
-        console.log(this.firstName + 'ahfasd iasd')
         return true
       }
     },
     onsubmit () {
-      console.log('In submit')
+      this.age = this.findage()
       const obj = {
         fname: this.firstName,
         mname: this.middleName,
         lname: this.lastName,
-        age: 10,
+        age: this.age,
         email: this.email,
         phoneNumber: this.phoneNumber,
         userName: this.userName,
         password: this.password
       }
+      console.log(obj)
       if (this.validate()) {
         axios.post('http://10.177.68.60:8080/register', obj).then((res) => {
           console.log(res)

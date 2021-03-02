@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import axios from 'axios'
 export default {
   name: 'login',
@@ -26,6 +27,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setLoginAction']),
     validate () {
       if (this.userName === '') {
         return false
@@ -43,7 +45,7 @@ export default {
       }
       if (this.validate()) {
         axios.post('http://10.177.68.60:8080/login', obj).then((res) => {
-          console.log(res.data)
+          this.$store.dispatch('setLoginAction', res.data)
           this.$router.push('/home')
         })
       }
