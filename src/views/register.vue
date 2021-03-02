@@ -3,21 +3,27 @@
       <center>
         <div class="container">
             <div class="inner-container">
+              <div class="heading">
                 <h3>Register</h3>
-                <input type="text" v-model="firstName" placeholder="First Name" name="firstname" class="input-css" required>
+              </div>
+              <div class="content">
+                <input type="text" v-model="firstName" placeholder="First Name" name="firstname" class="input-css">
                 <input type="text" v-model="middleName" placeholder="Middle Name" name="middlename" class="input-css">
                 <input type="text" v-model="lastName" placeholder="Last Name" name="lastname" class="input-css">
                 <label for="date" class="label-css">D.O.B.</label>
-                <input type="date" v-model="dob" name="date" class="label-input-css" required>
-                <input type="email" v-model="email" placeholder="Email" name="email" class="input-css" required>
-                <input type="tel" v-model="phoneNumber" placeholder="Phone Number" name="phonenumber" class="input-css" minlength="10" maxlength="10" required>
-                <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css" required>
-                <input type="password" v-model="password" placeholder="Password" name="password" class="input-css" minlength="8" maxlength="16" required>
-                <input type="password" v-model="confirmPassword" @keyup="mismatch" placeholder="Confirm Password" name="confirmpassword" class="input-css" minlength="8" maxlength="16" required>
+                <input type="date" v-model="dob" name="date" class="label-input-css">
+                <input type="email" v-model="email" placeholder="Email" name="email" class="input-css">
+                <input type="tel" v-model="phoneNumber" placeholder="Phone Number" name="phonenumber" class="input-css">
+                <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css">
+                <input type="password" v-model="password" placeholder="Password" name="password" class="input-css">
+                <input type="password" v-model="confirmPassword" @keyup="mismatch" placeholder="Confirm Password" name="confirmpassword" class="input-css">
                 <p id="mismatch-error">Passwords don't match</p>
                 <input type="submit" @click="onsubmit" class="btn" value="Register">
-                <router-link to="/login" class="login-register-router">Existing User? Login</router-link>
-                <router-link to="/home" class="login-home-router">Home</router-link>
+              </div>
+              <div class="footer">
+                <router-link to="/login" class="login-register-router register-router">Existing User? Login</router-link>
+                <router-link to="/home" class="login-register-router">Home</router-link>
+              </div>
             </div>
         </div>
       </center>
@@ -65,7 +71,7 @@ export default {
         return false
       } else if (this.email === '') {
         return false
-      } else if (this.phoneNumber === '' && this.length === 10) {
+      } else if (this.phoneNumber === '' && this.phoneNumber.length === 10) {
         return false
       } else if (this.userName === '') {
         return false
@@ -120,18 +126,15 @@ export default {
   .label-input-css{
       display: block;
       padding: 10px;
-      width: 200px;
-      min-width: 200px;
+      width: 195px;
+      min-width: 195px;
       margin-bottom: 20px;
       outline: none;
       border-radius: 0px;
       border: 0px;
       border-bottom: 1px solid black;
-  }
-
-  .login-home-router{
-      float: right;
-      text-decoration: none;
-      color: black;
+      -moz-box-shadow: inset 0 0 2px black;
+      -webkit-box-shadow: inset 0 0 2px black;
+      box-shadow: inset 0 0 2px black;
   }
 </style>

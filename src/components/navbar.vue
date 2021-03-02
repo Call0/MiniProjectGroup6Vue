@@ -28,11 +28,12 @@ export default {
 
 <style>
   .navbar{
+      z-index: 1;
       height: 60px;
-      position: sticky;
-      top: 0px;
+      position: fixed;
       width: 100vw;
-      background: ivory;
+      background: lightblue;
+      border-bottom: 1px solid black
   }
 
   .router{
@@ -41,7 +42,7 @@ export default {
       text-decoration: none;
       float: right;
       color: black;
-      background-color: gray;
+      background-color: white;
   }
 
   body{
