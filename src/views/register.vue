@@ -4,21 +4,20 @@
         <div class="container">
             <div class="inner-container">
                 <h3>Register</h3>
-                <form method="post" action="">
-                    <input type="text" placeholder="First Name" name="firstname" class="input-css" required>
-                    <input type="text" placeholder="Middle Name" name="middlename" class="input-css">
-                    <input type="text" placeholder="Last Name" name="lastname" class="input-css">
-                    <label for="date" class="label-css">D.O.B.</label>
-                    <input type="date" placeholder="Date of Birth" name="date" class="label-input-css" required>
-                    <input type="email" placeholder="Email" name="email" class="input-css" required>
-                    <input type="tel" placeholder="Phone Number" name="phonenumber" class="input-css" minlength="10" maxlength="10" required>
-                    <input type="text" placeholder="Username" name="username" class="input-css" required>
-                    <input type="password" v-model="password" placeholder="Password" name="password" class="input-css" minlength="8" maxlength="16" required>
-                    <input type="password" v-model="confirmPassword" @keydown="mismatch" placeholder="Confirm Password" name="confirmpassword" class="input-css" minlength="8" maxlength="16" required>
-                    <p v-if="password!==confirmPassword" id="mismatch-error">Passwords don't match</p>
-                    <button class="btn">Register</button>
-                </form>
+                <input type="text" v-model="firstName" placeholder="First Name" name="firstname" class="input-css" required>
+                <input type="text" v-model="middleName" placeholder="Middle Name" name="middlename" class="input-css">
+                <input type="text" v-model="lastName" placeholder="Last Name" name="lastname" class="input-css">
+                <label for="date" class="label-css">D.O.B.</label>
+                <input type="date" v-model="dob" name="date" class="label-input-css" required>
+                <input type="email" v-model="email" placeholder="Email" name="email" class="input-css" required>
+                <input type="tel" v-model="phoneNumber" placeholder="Phone Number" name="phonenumber" class="input-css" minlength="10" maxlength="10" required>
+                <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css" required>
+                <input type="password" v-model="password" placeholder="Password" name="password" class="input-css" minlength="8" maxlength="16" required>
+                <input type="password" v-model="confirmPassword" @keyup="mismatch" placeholder="Confirm Password" name="confirmpassword" class="input-css" minlength="8" maxlength="16" required>
+                <p id="mismatch-error">Passwords don't match</p>
+                <input type="submit" @click="onsubmit" class="btn" value="Register">
                 <router-link to="/login" class="login-register-router">Existing User? Login</router-link>
+                <router-link to="/home" class="login-home-router">Home</router-link>
             </div>
         </div>
       </center>
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'register',
   data () {
@@ -48,6 +48,48 @@ export default {
         document.getElementById('mismatch-error').style.display = 'block'
       } else {
         document.getElementById('mismatch-error').style.display = 'none'
+      }
+    },
+    validate () {
+      if (this.firstName === '') {
+        console.log(this.firstName)
+        return false
+      } else if (this.dob === '') {
+        return false
+      } else if (this.email === '') {
+        return false
+      } else if (this.phoneNumber === '' && this.length === 10) {
+        return false
+      } else if (this.userName === '') {
+        return false
+      } else if (this.password === '' && this.password.length >= 8 && this.password.length <= 16) {
+        return false
+      } else if (this.confirmPassword === '') {
+        return false
+      } else if (this.password !== this.confirmPassword) {
+        return false
+      } else {
+        console.log(this.firstName + 'ahfasd iasd')
+        return true
+      }
+    },
+    onsubmit () {
+      console.log('In submit')
+      const obj = {
+        fname: this.firstName,
+        mname: this.middleName,
+        lname: this.lastName,
+        age: 10,
+        email: this.email,
+        phoneNumber: this.phoneNumber,
+        userName: this.userName,
+        password: this.password
+      }
+      if (this.validate()) {
+        axios.post('http://10.177.68.60:8080/register', obj).then((res) => {
+          console.log(res)
+          this.$router.push('/login')
+        })
       }
     }
   }
@@ -78,5 +120,11 @@ export default {
       border-radius: 0px;
       border: 0px;
       border-bottom: 1px solid black;
+  }
+
+  .login-home-router{
+      float: right;
+      text-decoration: none;
+      color: black;
   }
 </style>

@@ -4,12 +4,11 @@
         <div class="container">
             <div class="inner-container">
                 <h3>Login</h3>
-                <form method="post" action="">
-                    <input type="text" placeholder="Username" name="username" class="input-css">
-                    <input type="password" placeholder="Password" name="password" class="input-css">
-                    <button class="btn">Login</button>
-                </form>
+                <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css">
+                <input type="password" v-model="password" placeholder="Password" name="password" class="input-css">
+                <button class="btn" @click="onsubmit">Login</button>
                 <router-link to="/register" class="login-register-router">New User? Register</router-link>
+                <router-link to="/home" class="login-home-router">Home</router-link>
             </div>
         </div>
       </center>
@@ -17,8 +16,39 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'login',
+  data () {
+    return {
+      userName: '',
+      password: ''
+    }
+  },
+  methods: {
+    validate () {
+      if (this.userName === '') {
+        return false
+      } else if (this.password === '') {
+        return false
+      } else {
+        return true
+      }
+    },
+    onsubmit () {
+      console.log('In submit')
+      const obj = {
+        userName: this.userName,
+        password: this.password
+      }
+      if (this.validate()) {
+        axios.post('http://10.177.68.60:8080/login', obj).then((res) => {
+          console.log(res.data)
+          this.$router.push('/home')
+        })
+      }
+    }
+  },
   components: {
   }
 }
