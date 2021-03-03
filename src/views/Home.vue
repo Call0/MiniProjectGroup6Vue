@@ -70,9 +70,8 @@ export default {
  }
 
  .home-container{
-   margin-top: 150px;
+   margin-top: 120px;
    margin-left: 50px;
-   position: fixed;
    width: 300px;
    border: 1px solid black;
    padding: 10px;
@@ -99,7 +98,7 @@ export default {
   }
 
   .search-result{
-    padding-top: 150px;
+    padding-top: 120px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -129,5 +128,38 @@ export default {
     -moz-box-shadow: inset 0 0 2px black;
     -webkit-box-shadow: inset 0 0 2px black;
     box-shadow: inset 0 0 2px black;
+  }
+
+  @media only screen and (max-width: 1100px) {
+    .card-view {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .middle-container{
+      background-color: white;
+      width: 100vw;
+      border-right: 0px solid black;
+      height: 400px;
+      position: initial;
+      display: flex;
+      justify-content: center;
+    }
+
+    .home-container{
+      margin-left: 0px;
+    }
+
+    .search-result{
+      width: 100vw;
+      padding-top: 50px;
+      margin-left: 0px;
+    }
+
+    .card-view {
+      float: left;
+    }
   }
 </style>
