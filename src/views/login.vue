@@ -1,23 +1,23 @@
 <template>
   <div>
-      <center>
-        <div class="container">
-            <div class="inner-container">
-                <div class="heading">
-                  <h3>Login</h3>
-                </div>
-                <div class="content">
-                  <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css">
-                  <input type="password" v-model="password" placeholder="Password" name="password" class="input-css">
-                  <button class="btn" @click="onsubmit">Login</button>
-                </div>
-                <div class="footer">
-                  <router-link to="/register" class="login-register-router register-router">New User? Register</router-link>
-                  <router-link to="/search" class="login-register-router">Home</router-link>
-                </div>
-            </div>
-        </div>
-      </center>
+    <center>
+      <div class="container">
+          <div class="inner-container">
+              <div class="heading">
+                <h3>Login</h3>
+              </div>
+              <div class="content">
+                <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css">
+                <input type="password" v-model="password" placeholder="Password" name="password" class="input-css">
+                <button class="btn" @click="onsubmit">Login</button>
+              </div>
+              <div class="footer">
+                <router-link to="/register" class="login-register-router register-router">New User? Register</router-link>
+                <router-link to="/search" class="login-register-router">Home</router-link>
+              </div>
+          </div>
+      </div>
+    </center>
   </div>
 </template>
 
@@ -70,12 +70,13 @@ export default {
   .inner-container{
       margin-top: 40px;
       width: 300px;
-      border: 1px solid black;
+      border: 1px solid white;
       padding: 30px;
+      border-radius: 10px;
       padding-top: 0px;
-      -moz-box-shadow: inset 0 0 2px black;
-      -webkit-box-shadow: inset 0 0 2px black;
-      box-shadow: inset 0 0 2px black;
+      -moz-box-shadow: 0 0 10px 1px gray;
+      -webkit-box-shadow: 0 0 10px 1px gray;
+      box-shadow: 0 0 10px 1px gray;
   }
 
   .input-css{
@@ -85,12 +86,12 @@ export default {
       min-width: 250px;
       margin-bottom: 20px;
       outline: none;
-      border-radius: 0px;
+      border-radius: 5px;
       border: 0px;
-      border-bottom: 1px solid black;
-      -moz-box-shadow: inset 0 0 2px black;
-      -webkit-box-shadow: inset 0 0 2px black;
-      box-shadow: inset 0 0 2px black;
+      border-bottom: 1px solid white;
+      -moz-box-shadow: 0 0 10px 1px gray;
+      -webkit-box-shadow: 0 0 10px 1px gray;
+      box-shadow: 0 0 10px 1px gray;
   }
   .input-css:active{
       outline: none;
@@ -98,16 +99,17 @@ export default {
 
   .btn{
       background-color: white;
-      width: 80px;
+      width: 100px;
       color: black;
       padding: 10px;
       display: block;
-      border: 1px solid black;
+      border: 1px solid white;
       cursor: pointer;
       margin-bottom: 20px;
-      -moz-box-shadow: inset 0 0 2px black;
-      -webkit-box-shadow: inset 0 0 2px black;
-      box-shadow: inset 0 0 2px black;
+      -moz-box-shadow: 0 0 10px 1px gray;
+      -webkit-box-shadow: 0 0 10px 1px gray;
+      box-shadow: 0 0 10px 1px gray;
+      border-radius: 5px;
   }
 
   .btn:focus{

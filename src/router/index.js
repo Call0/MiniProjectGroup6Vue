@@ -5,6 +5,8 @@ import login from '@/views/login.vue'
 import search from '@/views/search.vue'
 import train from '@/views/train.vue'
 import auth from '@/views/auth.vue'
+import book from '@/views/book.vue'
+import confirm from '@/views/confirm.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +30,16 @@ const routes = [
     path: '/train',
     name: 'Train',
     component: train
+  },
+  {
+    path: '/book',
+    name: 'Book',
+    component: book
+  },
+  {
+    path: '/confirm',
+    name: 'Confirm',
+    component: confirm
   },
   {
     path: '/',

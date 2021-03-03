@@ -6,14 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLogin: false,
-    serachResult: []
+    searchResult: []
   },
   getters: {
     login (state) {
       return state.isLogin
     },
     getSearchResult (state) {
-      return state.serachResult
+      return state.searchResult
     }
   },
   mutations: {
@@ -21,7 +21,7 @@ export default new Vuex.Store({
       state.isLogin = value
     },
     setSearchResult (state, value) {
-      state.serachResult = value
+      state.searchResult = value
     }
   },
   actions: {
@@ -29,7 +29,7 @@ export default new Vuex.Store({
       commit('setLogin', value)
     },
     setSearchResultAction ({ commit }, value) {
-      this.commit('setSearchResult', value)
+      commit('setSearchResult', value)
     }
   }
 })

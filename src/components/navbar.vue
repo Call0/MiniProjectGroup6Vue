@@ -1,6 +1,9 @@
 <template>
   <div>
       <nav class="navbar">
+          <span class="train-animate">
+            <img src="@/assets/train.png" class="animate-me">
+          </span>
           <span v-if="$store.getters.login">
             <button class="router" v-on:click="logout">Logout</button>
           </span>
@@ -43,6 +46,28 @@ export default {
       float: right;
       color: black;
       background-color: white;
+  }
+
+  .animate-me{
+    margin-top: 25px;
+    margin-left: 10px;
+    width: 45px;
+    height: 40px;
+  }
+
+  .train-animate{
+    animation-duration: 5s;
+    animation-name: slidein;
+  }
+  @keyframes slidein {
+    to {
+      margin-left: 60%;
+      width: 100%;
+    }
+    from {
+      margin-left: 0%;
+      width: 100%;
+    }
   }
 
   body{

@@ -11,6 +11,7 @@ export default {
   name: 'auth',
   methods: {
     onSignIn (googleUser) {
+      console.log("cvbn")
       const idToken = googleUser.getAuthResponse().id_token
       console.log('ID: ' + profile.getId());
       console.log('Name: ' + profile.getName());

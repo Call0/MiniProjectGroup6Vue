@@ -86,7 +86,7 @@ export default {
       if (this.email === '') {
         message = message + '- Email cann\'t be Empty <br>'
       }
-      if (this.phoneNumber === '' && this.phoneNumber.length === 10) {
+      if (isNaN(this.phoneNumber) || this.phoneNumber === '' || this.phoneNumber.length !== 10) {
         message += '- Invalid Phone number, must be 10 digits <br>'
       }
       if (this.userName === '') {
@@ -152,12 +152,12 @@ export default {
       min-width: 195px;
       margin-bottom: 20px;
       outline: none;
-      border-radius: 0px;
+      border-radius: 5px;
       border: 0px;
-      border-bottom: 1px solid black;
-      -moz-box-shadow: inset 0 0 2px black;
-      -webkit-box-shadow: inset 0 0 2px black;
-      box-shadow: inset 0 0 2px black;
+      border-bottom: 1px solid white;
+      -moz-box-shadow: 0 0 10px 1px gray;
+      -webkit-box-shadow: 0 0 10px 1px gray;
+      box-shadow: 0 0 10px 1px gray;
   }
 
   #errors{
@@ -167,7 +167,7 @@ export default {
     height: 100vh;
     background: rgb(99, 99, 99, 0.5);
     position: fixed;
-    border: 1px solid black;
+    border: 1px solid white;
   }
 
   #errors > div {
