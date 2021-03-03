@@ -4,7 +4,9 @@
         <div id="errors">
           <div>
             <img src="@/assets/cross-img.png" class="cross" @click="removeerrors">
-            <p class="error-content" id="show-errors"></p>
+            <center>
+              <p class="error-content" id="show-errors"></p>
+            </center>
           </div>
         </div>
         <div class="container">
@@ -163,6 +165,7 @@ export default {
   #errors{
     display: none;
     z-index: 3;
+    margin-top: -20px;
     width: 100vw;
     height: 100vh;
     background: rgb(99, 99, 99, 0.5);

@@ -1,6 +1,14 @@
 <template>
   <div>
     <center>
+      <div id="errors-login">
+          <div>
+            <img src="@/assets/cross-img.png" class="cross" @click="removeerrors">
+            <center>
+              <p class="error-content" id="show-errors-login"></p>
+            </center>
+          </div>
+        </div>
       <div class="container">
           <div class="inner-container">
               <div class="heading">
@@ -28,18 +36,31 @@ export default {
   name: 'login',
   data () {
     return {
+      message: '',
       userName: '',
       password: ''
     }
   },
   methods: {
     ...mapActions(['setLoginAction']),
+    removeerrors () {
+      document.getElementById('errors-login').style.display = 'none'
+    },
     validate () {
+      var message = ''
       if (this.userName === '') {
-        return false
-      } else if (this.password === '') {
+        message += '- Invalid username <br>'
+      }
+      if (this.password === '') {
+        message += '- Invalid password <br>'
+      }
+      this.message = message
+      if (this.message !== '') {
+        document.getElementById('errors-login').style.display = 'block'
+        document.getElementById('show-errors-login').innerHTML = message
         return false
       } else {
+        document.getElementById('errors-login').style.display = 'none'
         return true
       }
     },
@@ -137,5 +158,21 @@ export default {
 
   .footer{
     border-top: 1px solid black
+  }
+
+  #errors-login{
+    display: none;
+    z-index: 3;
+    margin-top: -20px;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(99, 99, 99, 0.5);
+    position: fixed;
+    border: 1px solid white;
+  }
+
+  #errors-login > div {
+    padding: 20px;
+    background: white;
   }
 </style>

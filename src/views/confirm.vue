@@ -1,10 +1,16 @@
 <template>
   <div>
+    <navbar/>
     <div>
+      <center>
         <div class="book-container">
-          <div class="home-container">
+          <div class="book-home-container">
             <center>
               <img src="@/assets/001-ticket.png" class="ticket-confirm">
+            </center>
+            <div id="myTicket">
+            <center>
+              <h3>Booking Confirmed</h3>
               <h3>Train Ticket</h3>
             </center>
             <table class="table-css" cellspacing="10px">
@@ -35,27 +41,74 @@
                     <td class="right">Seat No.</td>
                 </tr>
             </table>
+            </div>
           </div>
         </div>
-   </div>
+      </center>
+    </div>
+    <div id="elementH">
+    </div>
+    <center>
+      <button @click="convertHTMLTOPDF" class="up-margin btn">Download Ticket (PDF)</button>
+    </center>
+    <footerbar/>
   </div>
 </template>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 <script>
+import navbar from '../components/navbar.vue';
+import footerbar from '../components/footer.vue';
 export default {
-  name: 'confirm'
+  components: { navbar: navbar, footerbar: footerbar },
+  name: 'confirm',
+  methods: {
+    convertHTMLTOPDF () {
+      var doc = new jsPDF();
+      var elementHTML = $('#myTicket').html();
+      var specialElementHandlers = {
+        '#elementH': function (element, renderer) {
+          return true;
+        }
+      };
+      doc.fromHTML(elementHTML, 30, 30, {
+        'width': 100,
+        'elementHandlers': specialElementHandlers
+      }, function(){doc.save('Ticket.pdf');});
+    }
+  }
 }
 </script>
 
 <style>
   .ticket-confirm{
-      margin-top: -100px;
+      margin-top: -80px;
       width: 200px;
-      height: 200px
+      height: 200px;
   }
 
   .ticket-confirm-track{
       width: 20px;
       height: 10px;
+  }
+
+  .book-home-container{
+    margin-top: 120px;
+    margin-left: 0px;
+    margin-bottom: 100px;
+    width: 300px;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 30px;
+    -moz-box-shadow: 0 0 10px 1px gray;
+    -webkit-box-shadow: 0 0 10px 1px gray;
+    box-shadow: 0 0 10px 1px gray;
+    background-color: white;
+  }
+
+  .up-margin{
+    margin-top: -80px;
+    margin-bottom: 100px
   }
 </style>

@@ -35,6 +35,7 @@
             </table>
           </div>
         </div>
+      <footerbar></footerbar>
   </div>
 </template>
 
@@ -42,6 +43,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import axios from 'axios'
 import navbar from '../components/navbar.vue'
+import footerbar from '../components/footer.vue'
 export default {
   name: 'home',
   data () {
@@ -72,7 +74,8 @@ export default {
     }
   },
   components: {
-    navbar: navbar
+    navbar: navbar,
+    footerbar: footerbar
   },
   computed: {
     ...mapGetters(['getSearchResult'])
@@ -107,6 +110,7 @@ export default {
  .home-container{
    margin-top: 120px;
    margin-left: 50px;
+   margin-bottom: 100px;
    width: 300px;
    border: 1px solid white;
    padding: 10px;

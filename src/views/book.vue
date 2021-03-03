@@ -3,7 +3,7 @@
     <div>
     <navbar/>
         <div class="book-container">
-          <div class="home-container">
+          <div class="book-home-container">
             <center>
               <h3>Enter Booking Details</h3>
               <input type="text" name="trainid" placeholder="Train Id" v-model="trainId" class="input-css" disabled>
@@ -18,12 +18,14 @@
             </center>
           </div>
         </div>
-   </div>
+    </div>
+    <footerbar/>
   </div>
 </template>
 
 <script>
 import navbar from '../components/navbar.vue'
+import footerbar from '../components/footer.vue'
 export default {
   name: 'book',
   data () {
@@ -45,7 +47,8 @@ export default {
     }
   },
   components: {
-    navbar: navbar
+    navbar: navbar,
+    footerbar: footerbar
   }
 }
 </script>
@@ -59,4 +62,5 @@ export default {
     background-color: white;
     border-right: 1px solid black;
   }
+
 </style>
