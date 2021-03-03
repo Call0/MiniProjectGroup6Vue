@@ -16,7 +16,7 @@
                   <button class="btn" @click="onsubmit">Add</button>
                 </div>
                 <div class="footer">
-                  <router-link to="/home" class="login-register-router">Home</router-link>
+                  <router-link to="/search" class="login-register-router">Home</router-link>
                 </div>
             </div>
         </div>

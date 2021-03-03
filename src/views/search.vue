@@ -9,28 +9,21 @@
               <input type="text" name="to" v-model="to" placeholder="Arrival Station" class="input-css">
               <label for="date" class="label-css">Date</label>
               <input type="date" v-model="date" name="date" class="home-label-input-css">
-              <button class="btn">Search</button>
+              <button class="btn" @click="onsubmit">Search</button>
             </center>
           </div>
         </div>
         <div class="search-result">
-          <div class="card-view">
-          </div>
-          <div class="card-view">
-          </div>
-          <div class="card-view">
-          </div>
-          <div class="card-view">
-          </div>
-          <div class="card-view">
-          </div>
-          <div class="card-view">
+          <div v-for="searchElement in getSearchResult" :key="searchElement.id" class="card-view">
+            <p>{{searchElement}}</p>
           </div>
         </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import axios from 'axios'
 import navbar from '../components/navbar.vue'
 export default {
   name: 'home',
@@ -42,15 +35,30 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setSearchResult']),
     exchangeFromTo () {
       var from = this.to
       var to = this.from
       this.to = to
       this.from = from
+    },
+    onsubmit () {
+      const obj = {
+        fromLocation: this.from,
+        toLocation: this.to,
+        date: this.date
+      }
+      var url = 'http://10.177.68.60:8080/search'
+      axios.post(url, obj).then((res) => {
+        this.$store.dispatch('setSearchResultAction', res.data)
+      })
     }
   },
   components: {
     navbar: navbar
+  },
+  computed: {
+    ...mapGetters(['getSearchResult'])
   }
 }
 </script>

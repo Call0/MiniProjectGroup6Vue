@@ -1,6 +1,12 @@
 <template>
   <div>
       <center>
+        <div id="errors">
+          <div>
+            <img src="@/assets/cross-img.png" class="cross" @click="removeerrors">
+            <p class="error-content" id="show-errors"></p>
+          </div>
+        </div>
         <div class="container">
             <div class="inner-container">
               <div class="heading">
@@ -22,8 +28,9 @@
               </div>
               <div class="footer">
                 <router-link to="/login" class="login-register-router register-router">Existing User? Login</router-link>
-                <router-link to="/home" class="login-register-router">Home</router-link>
+                <router-link to="/search" class="login-register-router">Home</router-link>
               </div>
+
             </div>
         </div>
       </center>
@@ -36,6 +43,7 @@ export default {
   name: 'register',
   data () {
     return {
+      message: '',
       firstName: '',
       middleName: '',
       lastName: '',
@@ -49,6 +57,9 @@ export default {
     }
   },
   methods: {
+    removeerrors () {
+      document.getElementById('errors').style.display = 'none'
+    },
     findage () {
       const dobirth = new Date(this.dob)
       const monthdiff = Date.now() - dobirth
@@ -65,23 +76,35 @@ export default {
       }
     },
     validate () {
+      var message = ''
       if (this.firstName === '') {
-        return false
-      } else if (this.dob === '') {
-        return false
-      } else if (this.email === '') {
-        return false
-      } else if (this.phoneNumber === '' && this.phoneNumber.length === 10) {
-        return false
-      } else if (this.userName === '') {
-        return false
-      } else if (this.password === '' && this.password.length >= 8 && this.password.length <= 16) {
-        return false
-      } else if (this.confirmPassword === '') {
-        return false
-      } else if (this.password !== this.confirmPassword) {
+        message = message + '- First Name cann\'t be Empty <br>'
+      }
+      if (this.dob === '') {
+        message = message + '- Date of Birth cann\'t be Empty <br>'
+      }
+      if (this.email === '') {
+        message = message + '- Email cann\'t be Empty <br>'
+      }
+      if (this.phoneNumber === '' && this.phoneNumber.length === 10) {
+        message += '- Invalid Phone number, must be 10 digits <br>'
+      }
+      if (this.userName === '') {
+        message += '- Invalid username <br>'
+      }
+      if (this.password === '' || (this.password.length < 8 || this.password.length > 16)) {
+        message += '- Invalid password, must be between than 8 to 16 characters <br>'
+      }
+      if (this.password !== this.confirmPassword) {
+        message += '- Passwords don\'t match'
+      }
+      this.message = message
+      if (this.message !== '') {
+        document.getElementById('errors').style.display = 'block'
+        document.getElementById('show-errors').innerHTML = message
         return false
       } else {
+        document.getElementById('errors').style.display = 'none'
         return true
       }
     },
@@ -135,5 +158,36 @@ export default {
       -moz-box-shadow: inset 0 0 2px black;
       -webkit-box-shadow: inset 0 0 2px black;
       box-shadow: inset 0 0 2px black;
+  }
+
+  #errors{
+    display: none;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(99, 99, 99, 0.5);
+    position: fixed;
+    border: 1px solid black;
+  }
+
+  #errors > div {
+    padding: 20px;
+    background: white;
+  }
+
+  .cross{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  .error-content{
+    margin: 20px;
+    margin-top: 50px;
+    text-align: left;
+    color: red;
   }
 </style>

@@ -13,7 +13,7 @@
                 </div>
                 <div class="footer">
                   <router-link to="/register" class="login-register-router register-router">New User? Register</router-link>
-                  <router-link to="/home" class="login-register-router">Home</router-link>
+                  <router-link to="/search" class="login-register-router">Home</router-link>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ export default {
       if (this.validate()) {
         axios.post('http://10.177.68.60:8080/login', obj).then((res) => {
           this.$store.dispatch('setLoginAction', res.data)
-          this.$router.push('/home')
+          this.$router.push('/search')
         })
       }
     }

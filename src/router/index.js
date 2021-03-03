@@ -2,8 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import register from '@/views/register.vue'
 import login from '@/views/login.vue'
-import home from '@/views/home.vue'
+import search from '@/views/search.vue'
 import train from '@/views/train.vue'
+import auth from '@/views/auth.vue'
 
 Vue.use(VueRouter)
 
@@ -19,14 +20,19 @@ const routes = [
     component: login
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: home
+    path: '/search',
+    name: 'Search',
+    component: search
   },
   {
     path: '/train',
     name: 'Train',
     component: train
+  },
+  {
+    path: '/',
+    name: 'Auth',
+    component: auth
   }
 ]
 
