@@ -7,6 +7,7 @@ import train from '@/views/train.vue'
 import auth from '@/views/auth.vue'
 import book from '@/views/book.vue'
 import confirm from '@/views/confirm.vue'
+import route from '@/views/route.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/confirm',
     name: 'Confirm',
     component: confirm
+  },
+  {
+    path: '/route',
+    name: 'Route',
+    component: route
   },
   {
     path: '/',

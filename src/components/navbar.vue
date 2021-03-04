@@ -2,7 +2,7 @@
   <div>
       <nav class="navbar">
           <span class="train-animate">
-            <img src="@/assets/train.png" class="animate-me">
+            <router-link to='/search'><img src="@/assets/train.png" class="animate-me"></router-link>
           </span>
           <span v-if="$store.getters.login">
             <button class="router" v-on:click="logout">Logout</button>
