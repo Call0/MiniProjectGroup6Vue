@@ -35,7 +35,7 @@ export default {
       height: 60px;
       position: fixed;
       width: 100%;
-      background: lightblue;
+      background: #f34f4f;
   }
 
   .router{

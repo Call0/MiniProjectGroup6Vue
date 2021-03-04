@@ -101,9 +101,9 @@ export default {
     padding: 10px;
     border-radius: 10px;
     padding-top: 30px;
-    -moz-box-shadow: 0 0 10px 1px gray;
-    -webkit-box-shadow: 0 0 10px 1px gray;
-    box-shadow: 0 0 10px 1px gray;
+    -moz-box-shadow: 0 0 10px 1px #f34f4f;
+    -webkit-box-shadow: 0 0 10px 1px #f34f4f;
+    box-shadow: 0 0 10px 1px #f34f4f;
     background-color: white;
   }
 

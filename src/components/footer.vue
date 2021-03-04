@@ -18,7 +18,6 @@ export default {
       bottom: 0px;
       position: fixed;
       width: 100%;
-      background: lightblue;
-      border-bottom: 1px solid black
+      background: #f34f4f;
   }
 </style>

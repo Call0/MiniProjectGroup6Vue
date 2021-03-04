@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import navbar from '../components/navbar.vue'
 import footerbar from '../components/footer.vue'
 export default {
@@ -50,6 +51,18 @@ export default {
       }
       console.log(this.list)
       console.log(this.passengers)
+    },
+    onsubmit () {
+      const obj = {
+        fromLocation: this.from,
+        toLocation: this.to,
+        date: this.date
+      }
+      var url = 'http://10.177.68.57:8100/bookSearch/book'
+      axios.post(url, obj).then((res) => {
+        this.response = res.data
+        this.$store.dispatch('setSearchResultAction', res.data)
+      })
     }
   },
   components: {
@@ -107,7 +120,7 @@ export default {
     outline: none;
     border-radius: 5px;
     border: 0px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #ea2330;
     -moz-box-shadow: 0 0 10px 1px gray;
     -webkit-box-shadow: 0 0 10px 1px gray;
     box-shadow: 0 0 10px 1px gray;

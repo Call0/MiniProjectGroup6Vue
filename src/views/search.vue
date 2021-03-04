@@ -13,7 +13,11 @@
             </center>
           </div>
         </div>
-        <div class="search-result">
+        <div v-if="response.length == 0" class="search-result">
+          <h1>Search to see available trains</h1>
+          <img src="@/assets/giphy.gif" class="beautify-image" width=80%>
+        </div>
+        <div v-else class="search-result">
           <div v-for="searchElement in getSearchResult" :key="searchElement.id" class="card-view">
             <h3>{{searchElement.name}} ({{searchElement.trainId}})</h3>
             <table class="table-css" cellspacing="10px">
@@ -30,10 +34,12 @@
                 <td class="right">Seats Available: {{searchElement.totalSeats}}</td>
               </tr>
               <tr>
-                <td colspan="2" class="right"><button class="btn">Book Ticket</button></td>
+                <td colspan="2" class="right"><button class="btn" @click="onclick">Book Ticket</button></td>
               </tr>
             </table>
           </div>
+        </div>
+        <div class="bottom-margin">
         </div>
       <footerbar></footerbar>
   </div>
@@ -50,7 +56,8 @@ export default {
     return {
       from: '',
       to: '',
-      date: ''
+      date: '',
+      response: []
     }
   },
   methods: {
@@ -67,10 +74,18 @@ export default {
         toLocation: this.to,
         date: this.date
       }
-      var url = 'http://10.177.68.60:8080/search'
+      var url = 'http://10.177.68.57:8100/bookSearch/search'
       axios.post(url, obj).then((res) => {
+        this.response = res.data
         this.$store.dispatch('setSearchResultAction', res.data)
       })
+    },
+    onclick () {
+      if (this.$store.getters.login) {
+        this.$router.push('/book')
+      } else {
+        this.$router.push('/login')
+      }
     }
   },
   components: {
@@ -112,13 +127,13 @@ export default {
    margin-left: 50px;
    margin-bottom: 100px;
    width: 300px;
-   border: 1px solid white;
+   border: 1px solid #f34f4f;
    padding: 10px;
    border-radius: 10px;
    padding-top: 30px;
-   -moz-box-shadow: 0 0 10px 1px gray;
-   -webkit-box-shadow: 0 0 10px 1px gray;
-   box-shadow: 0 0 10px 1px gray;
+   -moz-box-shadow: 0 0 10px 1px #f34f4f;
+   -webkit-box-shadow: 0 0 10px 1px #f34f4f;
+   box-shadow: 0 0 10px 1px #f34f4f;
    background-color: white;
  }
 
@@ -132,7 +147,6 @@ export default {
       outline: none;
       border-radius: 5px;
       border: 0px;
-      border-bottom: 1px solid white;
       -moz-box-shadow: 0 0 10px 1px gray;
       -webkit-box-shadow: 0 0 10px 1px gray;
       box-shadow: 0 0 10px 1px gray;
@@ -148,16 +162,17 @@ export default {
   }
 
   .middle-container{
-    background-color: white;
+    background-color: ivory;
     width: 420px;
-    border-right: 1px solid black;
+    border-right: 1px solid #f34f4f;
     height: 100vh;
     float: left;
     position: fixed;
   }
 
   .btn:hover{
-    background-color: lightblue;
+    background-color: #f34f4f;
+    color: white
   }
 
   .card-view{
@@ -168,9 +183,9 @@ export default {
     padding: 10px;
     border: 1px solid white;
     margin-bottom: 20px;
-    -moz-box-shadow: 0 0 10px 1px gray;
-    -webkit-box-shadow: 0 0 10px 1px gray;
-    box-shadow: 0 0 10px 1px gray;
+    -moz-box-shadow: 0 0 10px 1px #f34f4f;
+    -webkit-box-shadow: 0 0 10px 1px #f34f4f;
+    box-shadow: 0 0 10px 1px #f34f4f;
   }
 
   #label-css-search{
@@ -181,6 +196,10 @@ export default {
     width: 100%
   }
 
+  body{
+    background: url('')
+  }
+
   @media only screen and (max-width: 1100px) {
     .card-view {
       margin-left: 30px;
@@ -188,12 +207,24 @@ export default {
     }
   }
 
+  .beautify-image{
+    border: 1px solid white;
+    -moz-box-shadow: 0 0 10px 1px #f34f4f;
+    -webkit-box-shadow: 0 0 10px 1px #f34f4f;
+    box-shadow: 0 0 10px 1px #f34f4f;
+    border-radius: 10px;
+  }
+
+  .bottom-margin{
+    margin-bottom: 100px;
+  }
+
   @media only screen and (max-width: 900px) {
     .middle-container{
-      background-color: white;
+      background-color: ivory;
       width: 100vw;
-      border-right: 0px solid black;
-      height: 450px;
+      border-right: 0px solid #f34f4f;
+      height: 550px;
       position: initial;
       display: flex;
       justify-content: center;
@@ -205,6 +236,7 @@ export default {
 
     .search-result{
       width: 100vw;
+      height: 100vh;
       padding-top: 50px;
       margin-left: 0px;
     }

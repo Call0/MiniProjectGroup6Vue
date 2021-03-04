@@ -136,7 +136,7 @@ export default {
 <style>
   #mismatch-error{
       display: none;
-      color: red;
+      color: #f34f4f;
       margin-bottom: 20px;
   }
 
@@ -156,7 +156,6 @@ export default {
       outline: none;
       border-radius: 5px;
       border: 0px;
-      border-bottom: 1px solid white;
       -moz-box-shadow: 0 0 10px 1px gray;
       -webkit-box-shadow: 0 0 10px 1px gray;
       box-shadow: 0 0 10px 1px gray;
@@ -191,6 +190,6 @@ export default {
     margin: 20px;
     margin-top: 50px;
     text-align: left;
-    color: red;
+    color: #f34f4f;
   }
 </style>

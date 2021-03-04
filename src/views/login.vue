@@ -95,9 +95,9 @@ export default {
       padding: 30px;
       border-radius: 10px;
       padding-top: 0px;
-      -moz-box-shadow: 0 0 10px 1px gray;
-      -webkit-box-shadow: 0 0 10px 1px gray;
-      box-shadow: 0 0 10px 1px gray;
+      -moz-box-shadow: 0 0 10px 1px #f34f4f;
+      -webkit-box-shadow: 0 0 10px 1px #f34f4f;
+      box-shadow: 0 0 10px 1px #f34f4f;
   }
 
   .input-css{
@@ -121,15 +121,15 @@ export default {
   .btn{
       background-color: white;
       width: 100px;
-      color: black;
+      color: #f34f4f;
       padding: 10px;
       display: block;
       border: 1px solid white;
       cursor: pointer;
       margin-bottom: 20px;
-      -moz-box-shadow: 0 0 10px 1px gray;
-      -webkit-box-shadow: 0 0 10px 1px gray;
-      box-shadow: 0 0 10px 1px gray;
+      -moz-box-shadow: 0 0 10px 1px #f34f4f;
+      -webkit-box-shadow: 0 0 10px 1px #f34f4f;
+      box-shadow: 0 0 10px 1px #f34f4f;
       border-radius: 5px;
   }
 
