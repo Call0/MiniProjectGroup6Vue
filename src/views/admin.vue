@@ -12,7 +12,7 @@
       <div class="container">
           <div class="inner-container">
               <div class="heading">
-                <h3>Login</h3>
+                <h3>Admin Login</h3>
               </div>
               <div class="content">
                 <input type="text" v-model="userName" placeholder="Username" name="username" class="input-css">
@@ -33,7 +33,7 @@
 import { mapActions } from 'vuex'
 import axios from 'axios'
 export default {
-  name: 'login',
+  name: 'admin',
   data () {
     return {
       message: '',
@@ -71,7 +71,7 @@ export default {
         password: this.password
       }
       if (this.validate()) {
-        axios.post('http://10.177.68.57:8100=/loginRailway', obj).then((res) => {
+        axios.post('http://10.177.68.57:8100=/admin/loginRailway', obj).then((res) => {
           this.$store.dispatch('setLoginAction', res.data)
           this.$router.push('/search')
         })
@@ -84,95 +84,4 @@ export default {
 </script>
 
 <style>
-  .container{
-      margin: 20px;
-  }
-
-  .inner-container{
-      margin-top: 40px;
-      width: 300px;
-      border: 1px solid white;
-      padding: 30px;
-      border-radius: 10px;
-      padding-top: 0px;
-      -moz-box-shadow: 0 0 10px 1px #f34f4f;
-      -webkit-box-shadow: 0 0 10px 1px #f34f4f;
-      box-shadow: 0 0 10px 1px #f34f4f;
-  }
-
-  .input-css{
-      display: block;
-      padding: 10px;
-      width: 250px;
-      min-width: 250px;
-      margin-bottom: 20px;
-      outline: none;
-      border-radius: 5px;
-      border: 0px;
-      border-bottom: 1px solid white;
-      -moz-box-shadow: 0 0 10px 1px gray;
-      -webkit-box-shadow: 0 0 10px 1px gray;
-      box-shadow: 0 0 10px 1px gray;
-  }
-  .input-css:active{
-      outline: none;
-  }
-
-  .btn{
-      background-color: white;
-      width: 100px;
-      color: #f34f4f;
-      padding: 10px;
-      display: block;
-      border: 1px solid white;
-      cursor: pointer;
-      margin-bottom: 20px;
-      -moz-box-shadow: 0 0 10px 1px #f34f4f;
-      -webkit-box-shadow: 0 0 10px 1px #f34f4f;
-      box-shadow: 0 0 10px 1px #f34f4f;
-      border-radius: 5px;
-  }
-
-  .btn:focus{
-      outline: none;
-  }
-
-  .login-register-router{
-      text-decoration: none;
-      color: black;
-      display: block;
-      margin-top: 10px;
-  }
-
-  .register-router{
-      margin-top: 10px;
-  }
-
-  .heading{
-    border-bottom: 1px solid black
-  }
-
-  .content{
-    margin-top: 20px;
-  }
-
-  .footer{
-    border-top: 1px solid black
-  }
-
-  #errors-login{
-    display: none;
-    z-index: 3;
-    margin-top: -20px;
-    width: 100vw;
-    height: 100vh;
-    background: rgb(99, 99, 99, 0.5);
-    position: fixed;
-    border: 1px solid white;
-  }
-
-  #errors-login > div {
-    padding: 20px;
-    background: white;
-  }
 </style>

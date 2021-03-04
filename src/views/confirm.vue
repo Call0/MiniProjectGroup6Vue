@@ -16,15 +16,15 @@
             <table class="table-css" cellspacing="10px">
                 <tr>
                     <td class="left">Train No.</td>
-                    <td class="right">Date</td>
+                    <td class="right">{{ trainDate }}</td>
                 </tr>
                 <tr>
-                    <td class="left">12345</td>
+                    <td class="left">{{ trainId }}</td>
                     <td class="right">NA</td>
                 </tr>
                 <tr>
                     <center>
-                        <td colspan="2">Source <img src="@/assets/train-tracks.png" class="ticket-confirm-track"> Destination</td>
+                        <td colspan="2">{{ trainStart }} <img src="@/assets/train-tracks.png" class="ticket-confirm-track"> {{ trainEnd }}</td>
                     </center>
                 </tr>
                 <tr>
@@ -36,9 +36,9 @@
                     <td class="left">NAME</td>
                     <td class="right">SEAT NO.</td>
                 </tr>
-                <tr>
-                    <td class="left">Passenger Name</td>
-                    <td class="right">Seat No.</td>
+                <tr v-for="pass in trainSeatCount" :key="pass.id">
+                    <td class="left">{{ trainPassengers[pass-1].name }}</td>
+                    <td class="right">{{ trainSeatList[pass-1] }}</td>
                 </tr>
             </table>
             </div>
@@ -62,6 +62,17 @@ import footerbar from '../components/footer.vue';
 export default {
   components: { navbar: navbar, footerbar: footerbar },
   name: 'confirm',
+  data () {
+    return {
+      trainId: localStorage.getItem('bookTicketId'),
+      trainDate: localStorage.getItem('bookTicketDate'),
+      trainStart: localStorage.getItem('bookTicketStartLocation'),
+      trainEnd: localStorage.getItem('bookTicketEndLocation'),
+      trainSeatCount: localStorage.getItem('bookTicketSeatCount'),
+      trainPassengers: localStorage.getItem('bookTicketPassengers'),
+      trainSeatList: localStorage.getItem('bookTicketSeatList')
+    }
+  },
   methods: {
     convertHTMLTOPDF () {
       var doc = new jsPDF();

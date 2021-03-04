@@ -8,6 +8,7 @@ import auth from '@/views/auth.vue'
 import book from '@/views/book.vue'
 import confirm from '@/views/confirm.vue'
 import route from '@/views/route.vue'
+import admin from '@/views/admin.vue'
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,11 @@ const routes = [
     path: '/book',
     name: 'Book',
     component: book
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: admin
   },
   {
     path: '/confirm',

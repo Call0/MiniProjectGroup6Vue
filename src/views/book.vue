@@ -6,22 +6,22 @@
       </div>
         <div class="book-container">
           <div class="book-container-child">
-              <h3>Enter Booking Details</h3>
+              <h3>Train Details</h3>
               <input type="text" name="trainid" placeholder="Train Id" v-model="trainId" class="input-css" disabled>
               <label for="date" id="label-css-book" class="label-css">Date</label>
               <input type="date" v-model="doj" name="date" class="home-label-input-css" disabled>
           </div>
           <div class="book-container-child">
-            <h3>Passenger Details</h3>
+            <h3>Enter Passenger Details</h3>
                 <table class="details-table">
                   <tr v-for="(c, k) in seatCount" :key="k">
                   <td class="big-part"><input type="text" name="name" placeholder="Name" v-model="passengers[k]" class="input-css-book"></td>
-                  <td><input type="number" name="age" placeholder="Age" v-model="list[k]" class="input-css-book"></td>
+                  <td><input type="number" name="age" placeholder="Age" v-model="age[k]" class="input-css-book"></td>
                   </tr>
                 </table>
               <button class="btn-size btn" @click="update">Add Passenger (MAX 5)</button>
               <h3>Confirm Booking</h3>
-            <button class="cnfrm-btn-size btn">Book Ticket</button>
+            <button class="cnfrm-btn-size btn" @click="onsubmit">Book Ticket</button>
           </div>
         </div>
     </div>
@@ -31,43 +31,62 @@
 
 <script>
 import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex'
 import navbar from '../components/navbar.vue'
 import footerbar from '../components/footer.vue'
 export default {
   name: 'book',
   data () {
     return {
-      trainId: '',
-      doj: '',
+      trainId: localStorage.getItem('bookTicketId'),
+      doj: localStorage.getItem('bookTicketDate'),
       seatCount: 0,
       passengers: [],
-      list: []
+      age: [],
+      response: []
     }
   },
   methods: {
+    ...mapActions(['setBookingResult']),
     update () {
       if (this.seatCount < 5) {
         this.seatCount++
       }
-      console.log(this.list)
+      console.log(this.age)
       console.log(this.passengers)
     },
     onsubmit () {
+      const arr = []
+      this.seatCount = this.passengers.length
+      var passengerList = this.passengers
+      var ageList = this.age
+      passengerList.forEach(function (value, index) {
+        arr.push({ name: value, age: ageList[index] })
+      })
       const obj = {
-        fromLocation: this.from,
-        toLocation: this.to,
-        date: this.date
+        trainId: this.trainId,
+        dateOfJourney: this.doj,
+        seatCount: this.seatCount,
+        passengers: arr
       }
       var url = 'http://10.177.68.57:8100/bookSearch/book'
       axios.post(url, obj).then((res) => {
+        console.log(res)
         this.response = res.data
-        this.$store.dispatch('setSearchResultAction', res.data)
+        localStorage.setItem('bookTicketPassengers', res.data.passengers)
+        localStorage.setItem('bookTicketSeatCount', res.data.seatCount)
+        localStorage.setItem('bookTicketSeatList', res.data.seatList)
+        this.$store.dispatch('setBookingResultAction', res.data)
+        this.$router.push('/confirm')
       })
     }
   },
   components: {
     navbar: navbar,
     footerbar: footerbar
+  },
+  computed: {
+    ...mapGetters(['getBookingResult'])
   }
 }
 </script>

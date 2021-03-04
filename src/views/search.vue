@@ -34,7 +34,7 @@
                 <td class="right">Seats Available: {{searchElement.totalSeats}}</td>
               </tr>
               <tr>
-                <td colspan="2" class="right"><button class="btn" @click="onclick">Book Ticket</button></td>
+                <td colspan="2" class="right"><button class="btn" @click="onclick(searchElement.trainId, searchElement.startLocation, searchElement.endLocation, searchElement.date)">Book Ticket</button></td>
               </tr>
             </table>
           </div>
@@ -76,12 +76,17 @@ export default {
       }
       var url = 'http://10.177.68.57:8100/bookSearch/search'
       axios.post(url, obj).then((res) => {
+        this.$router.push('/search?q1=' + this.from + '&&q2=' + this.to + '&&q3=' + this.date)
         this.response = res.data
         this.$store.dispatch('setSearchResultAction', res.data)
       })
     },
-    onclick () {
+    onclick (id, start, end, date) {
       if (this.$store.getters.login) {
+        localStorage.setItem('bookTicketId', id)
+        localStorage.setItem('bookTicketStartLocation', start)
+        localStorage.setItem('bookTicketEndLocation', end)
+        localStorage.setItem('bookTicketDate', date)
         this.$router.push('/book')
       } else {
         this.$router.push('/login')
@@ -94,6 +99,17 @@ export default {
   },
   computed: {
     ...mapGetters(['getSearchResult'])
+  },
+  created () {
+    const query = this.$route.query
+    console.log(query)
+    this.from = query.q1
+    this.to = query.q2
+    this.date = query.q3
+    console.log(this.from)
+    console.log(this.to)
+    console.log(this.date)
+    this.onsubmit()
   }
 }
 </script>
@@ -162,12 +178,12 @@ export default {
   }
 
   .middle-container{
-    background-color: ivory;
     width: 420px;
     border-right: 1px solid #f34f4f;
     height: 100vh;
     float: left;
     position: fixed;
+    box-shadow: 0 0 10px 1px #f34f4f;
   }
 
   .btn:hover{
@@ -197,7 +213,10 @@ export default {
   }
 
   body{
-    background: url('')
+    background: url('https://i.pinimg.com/originals/0e/f9/54/0ef95476980fed727ab981eef642d89a.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   @media only screen and (max-width: 1100px) {
