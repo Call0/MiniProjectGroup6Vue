@@ -1,7 +1,7 @@
 <template>
     <footer class="footerbar">
         <!--<marquee direction="right"><img src="@/assets/train.png" class="animate-me"> </marquee>-->
-        <marquee direction="left"><h4>IMPORTANT ANNOUNCEMENT: Gadi no. 102567, kanpur ke raste Delhi se Jhansi jane vali Gareeb Express 10 minute ki deri se ayegi</h4></marquee>
+        <!--<marquee direction="left"><h4>IMPORTANT ANNOUNCEMENT: Gadi no. 102567, kanpur ke raste Delhi se Jhansi jane vali Gareeb Express 10 minute ki deri se ayegi</h4></marquee>-->
     </footer>
 </template>
 

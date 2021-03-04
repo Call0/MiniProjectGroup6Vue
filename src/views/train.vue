@@ -1,6 +1,8 @@
 <template>
     <div>
       <center>
+      <div class="container">
+          <div class="inner-container">
           <div class="heading">
             <h3>Add Train</h3>
           </div>
@@ -16,6 +18,8 @@
           <div class="footer">
             <router-link to="/search" class="login-register-router">Home</router-link>
           </div>
+          </div>
+        </div>
       </center>
     </div>
 </template>
@@ -35,7 +39,20 @@ export default {
     }
   },
   methods: {
+    convertTime () {
+      var time12h = this.departureTime
+      const [time, modifier] = time12h.split(' ')
+      let [hours, minutes] = time.split(':')
+      if (hours === '12') {
+        hours = '00'
+      }
+      if (modifier === 'PM') {
+        hours = parseInt(hours, 10) + 12
+      }
+      return hours + ':' + minutes
+    },
     onsubmit () {
+      this.departureTime = this.convertTime()
       const obj = {
         id: this.id,
         name: this.name,
@@ -44,6 +61,7 @@ export default {
         departureTime: this.departureTime,
         bogie: this.bogie
       }
+      console.log(obj)
       axios.post('http://10.177.68.60:8083/train', obj).then((res) => {
         console.log(res)
         this.$router.push('/train')

@@ -36,7 +36,6 @@ export default {
       position: fixed;
       width: 100%;
       background: lightblue;
-      border-bottom: 1px solid black
   }
 
   .router{
