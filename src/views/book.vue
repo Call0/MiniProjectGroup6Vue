@@ -67,18 +67,24 @@ export default {
         trainId: this.trainId,
         dateOfJourney: this.doj,
         seatCount: this.seatCount,
-        passengers: arr
+        passengers: arr,
+        userID: localStorage.getItem('sessionID')
       }
-      var url = 'http://10.177.68.57:8100/bookSearch/book'
-      axios.post(url, obj).then((res) => {
-        console.log(res)
-        this.response = res.data
-        localStorage.setItem('bookTicketPassengers', res.data.passengers)
-        localStorage.setItem('bookTicketSeatCount', res.data.seatCount)
-        localStorage.setItem('bookTicketSeatList', res.data.seatList)
-        this.$store.dispatch('setBookingResultAction', res.data)
-        this.$router.push('/confirm')
-      })
+      if (localStorage.getItem('sessionID') !== null) {
+        var url = 'http://10.177.68.57:8100/bookSearch/book'
+        axios.post(url, obj).then((res) => {
+          console.log(res)
+          this.response = res.data
+          localStorage.setItem('bookTicketPassengers', JSON.stringify(res.data.passengers))
+          localStorage.setItem('bookTicketSeatCount', res.data.seatCount)
+          localStorage.setItem('bookTicketSeatList', JSON.stringify(res.data.seatList))
+          this.$store.dispatch('setBookingResultAction', res.data)
+          this.$router.push('/confirm')
+        })
+      } else {
+        alert('Not Logged In, Login First')
+        this.$router.push('/login')
+      }
     }
   },
   components: {

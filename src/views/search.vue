@@ -8,7 +8,7 @@
               <img src="@/assets/exchange.png" class="exchange-img" @click="exchangeFromTo">
               <input type="text" name="to" v-model="to" placeholder="Arrival Station" class="input-css">
               <label for="date" id="label-css-search" class="label-css">Date</label>
-              <input type="date" v-model="date" name="date" class="home-label-input-css">
+              <input type="date" v-model="date" name="date" @click="limitDate" class="home-label-input-css">
               <button class="btn" @click="onsubmit">Search</button>
             </center>
           </div>
@@ -91,6 +91,10 @@ export default {
       } else {
         this.$router.push('/login')
       }
+    },
+    limitDate () {
+      var today = new Date().toISOString().split('T')[0]
+      document.getElementsByName('date')[0].setAttribute('min', today)
     }
   },
   components: {

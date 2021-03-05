@@ -68,9 +68,9 @@ export default {
       trainDate: localStorage.getItem('bookTicketDate'),
       trainStart: localStorage.getItem('bookTicketStartLocation'),
       trainEnd: localStorage.getItem('bookTicketEndLocation'),
-      trainSeatCount: localStorage.getItem('bookTicketSeatCount'),
-      trainPassengers: localStorage.getItem('bookTicketPassengers'),
-      trainSeatList: localStorage.getItem('bookTicketSeatList')
+      trainSeatCount: parseInt(localStorage.getItem('bookTicketSeatCount')),
+      trainPassengers: JSON.parse(localStorage.getItem('bookTicketPassengers')),
+      trainSeatList: JSON.parse(localStorage.getItem('bookTicketSeatList'))
     }
   },
   methods: {

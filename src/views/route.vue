@@ -11,7 +11,8 @@
         <td><input type="text" class="input-css" v-model="stopsDist[k]" placeholder="Distance"></td>
       </tr>
       <tr>
-        <td colspan="2"><button class="btn" @click="update">Add Stop</button></td>
+        <td><button class="btn" @click="update">Add Stop</button></td>
+        <td><button class="btn" @click="demote">Remove Stop</button></td>
       </tr>
       <tr>
         <td><input type="text" class="input-css" v-model="end" placeholder="End Location"></td>
@@ -43,6 +44,9 @@ export default {
   methods: {
     update () {
       this.stopsCount++
+    },
+    demote () {
+      this.stopsCount--
     },
     onsubmit () {
       const arr = []

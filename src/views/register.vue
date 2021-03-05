@@ -123,7 +123,7 @@ export default {
         password: this.password
       }
       if (this.validate()) {
-        axios.post('http://10.177.68.60:8080/register', obj).then((res) => {
+        axios.post('http://10.177.68.57:8100/railwayRegistration', obj).then((res) => {
           console.log(res)
           this.$router.push('/login')
         })

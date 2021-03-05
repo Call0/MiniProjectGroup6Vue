@@ -70,9 +70,11 @@ export default {
         userName: this.userName,
         password: this.password
       }
+      console.log(obj)
       if (this.validate()) {
-        axios.post('http://10.177.68.57:8100=/loginRailway', obj).then((res) => {
-          this.$store.dispatch('setLoginAction', res.data)
+        axios.post('http://10.177.68.57:8100/loginLogout/login', obj).then((res) => {
+          localStorage.setItem('sessionID', res.data.sessionID)
+          this.$store.dispatch('setLoginAction', res.data.sessionID)
           this.$router.push('/search')
         })
       }

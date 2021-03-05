@@ -4,7 +4,7 @@
           <span class="train-animate">
             <router-link to='/search'><img src="@/assets/train.png" class="animate-me"></router-link>
           </span>
-          <span v-if="$store.getters.login">
+          <span v-if="sessionId !== null">
             <button class="router" v-on:click="logout">Logout</button>
           </span>
           <span v-else>
@@ -17,13 +17,32 @@
 
 <script>
 import { mapActions } from 'vuex'
+import axios from 'axios'
 export default {
   name: 'navbar',
+  data () {
+    return {
+      sessionId: localStorage.getItem('sessionID')
+    }
+  },
   methods: {
     ...mapActions(['setLoginAction']),
     logout () {
-      console.log('logout')
-      this.$store.dispatch('setLoginAction', false)
+      const obj = {
+        sessionId: this.sessionId
+      }
+      console.log(this.sessionId)
+      axios.post('http://10.177.68.57:8100/loginLogout/logout', obj).then((res) => {
+        localStorage.removeItem('sessionID')
+        localStorage.setItem('bookTicketSeatCount', '')
+        localStorage.setItem('bookTicketDate', '')
+        localStorage.setItem('bookTicketId', '')
+        localStorage.setItem('bookTicketSeatList', '')
+        console.log(res)
+        this.response = res.data
+        window.location.reload()
+        this.$router.push('/search')
+      })
     }
   }
 }
