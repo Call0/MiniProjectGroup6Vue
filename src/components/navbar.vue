@@ -40,8 +40,7 @@ export default {
         localStorage.setItem('bookTicketSeatList', '')
         console.log(res)
         this.response = res.data
-        window.location.reload()
-        this.$router.push('/search')
+        window.location.href = 'http://localhost:8080/search'
       })
     }
   }

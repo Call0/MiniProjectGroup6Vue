@@ -83,7 +83,7 @@ export default {
         })
       } else {
         alert('Not Logged In, Login First')
-        this.$router.push('/login')
+        this.$router.push({ path: '/login', query: { routeto: 'book' } })
       }
     }
   },

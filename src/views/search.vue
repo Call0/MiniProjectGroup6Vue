@@ -76,7 +76,7 @@ export default {
       }
       var url = 'http://10.177.68.57:8100/bookSearch/search'
       axios.post(url, obj).then((res) => {
-        this.$router.push('/search?q1=' + this.from + '&&q2=' + this.to + '&&q3=' + this.date)
+        this.$router.push('/search?q1=' + this.from + '&q2=' + this.to + '&q3=' + this.date)
         this.response = res.data
         this.$store.dispatch('setSearchResultAction', res.data)
       })
@@ -89,7 +89,7 @@ export default {
         localStorage.setItem('bookTicketDate', date)
         this.$router.push('/book')
       } else {
-        this.$router.push('/login')
+        this.$router.push({ path: 'login', query: { redirect: 'book' } })
       }
     },
     limitDate () {
