@@ -5,8 +5,10 @@
             <router-link to='/search'><img src="@/assets/train.png" class="animate-me"></router-link>
           </span>
           <span v-if="sessionId !== null">
-            <button class="router" v-on:click="logout">Logout</button>
-          </span>
+            <button class="router"  v-on:click="logout">Logout</button>
+              <button class="router" id ="getHistoryBtn" @click="getBookingHistory">{{buttonValue}}</button>
+              <!-- <button class="router" id ="goBackBtn" @click="goBack">Go Back</button> -->
+            </span>
           <span v-else>
             <router-link to='/login' class="router">Login</router-link>
             <router-link to='/register' class="router" >Register</router-link>
@@ -22,10 +24,15 @@ export default {
   name: 'navbar',
   data () {
     return {
-      sessionId: localStorage.getItem('sessionID')
+      sessionId: localStorage.getItem('sessionID'),
+      inWhichPage: 'other',
+      buttonValue: 'Get Booking History'
     }
   },
   methods: {
+    goback () {
+      this.$router.go(-1)
+    },
     ...mapActions(['setLoginAction']),
     logout () {
       const obj = {
@@ -42,6 +49,17 @@ export default {
         this.response = res.data
         window.location.href = 'http://localhost:8080/search'
       })
+    },
+    getBookingHistory () {
+      if (this.inWhichPage === 'other') {
+        this.inWhichPage = 'history'
+        this.buttonValue = 'Go back'
+        this.$router.push('/historypane')
+      } else {
+        this.inWhichPage = 'other'
+        this.buttonValue = 'Get Booking History'
+        this.$router.go(-1)
+      }
     }
   }
 }
@@ -89,5 +107,8 @@ export default {
 
   body{
       margin: 0px;
+  }
+  #getHisotryBtn{
+    position: relative;
   }
 </style>
