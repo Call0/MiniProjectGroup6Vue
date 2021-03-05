@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     isLogin: true,
     searchResult: [],
-    bookingResult: {}
+    bookingResult: {},
+    bookingHistory: []
   },
   getters: {
     login (state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     getBookingResult (state) {
       return state.bookingResult
+    },
+    getBookingHistory (state) {
+      return state.bookingHistory
     }
   },
   mutations: {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
     },
     setBookingResult (state, value) {
       state.bookingResult = value
+    },
+    setBookingHistory (state, value) {
+      state.bookingHistory = value
     }
   },
   actions: {
@@ -40,6 +47,9 @@ export default new Vuex.Store({
     },
     setBookingResultAction ({ commit }, value) {
       commit('setBookingResult', value)
+    },
+    setBookingHistoryAction ({ commit }, value) {
+      commit('setBookingHistory', value)
     }
   }
 })
