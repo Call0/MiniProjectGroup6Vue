@@ -54,7 +54,7 @@ export default {
     onsubmit () {
       this.departureTime = this.convertTime()
       const obj = {
-        id: this.id,
+        trainId: this.id,
         name: this.name,
         startLocation: this.startLocation,
         endLocation: this.endLocation,
@@ -62,10 +62,14 @@ export default {
         bogie: this.bogie
       }
       console.log(obj)
-      axios.post('http://10.177.68.60:8083/train', obj).then((res) => {
+      axios.post('http://10.177.68.3:8080/add', obj).then((res) => {
         console.log(res)
-        this.$router.push('/train')
       })
+    }
+  },
+  created () {
+    if (localStorage.getItem('isAdmin') !== 'true') {
+      this.$router.push('/search')
     }
   }
 }

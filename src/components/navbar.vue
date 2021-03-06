@@ -5,9 +5,10 @@
             <router-link to='/search'><img src="@/assets/train.png" class="animate-me"></router-link>
           </span>
           <span v-if="sessionId !== null">
-            <button class="router"  v-on:click="logout">Logout</button>
-              <button class="router" id ="getHistoryBtn" @click="getBookingHistory">{{buttonValue}}</button>
-              <!-- <button class="router" id ="goBackBtn" @click="goBack">Go Back</button> -->
+            <button v-if="isAdmin !== 'true'" class="router"  v-on:click="logout">Logout</button>
+            <button v-else class="router"  v-on:click="logoutAdmin">Logout Admin</button>
+            <button v-if="buttonValue === 'history' || buttonValue === null" class="router" id ="getHistoryBtn" @click="getBookingHistory">Booking History</button>
+            <button v-else-if="buttonValue === 'back'" class="router" id ="goBackBtn" @click="goback">Go Back</button>
             </span>
           <span v-else>
             <router-link to='/login' class="router">Login</router-link>
@@ -25,8 +26,8 @@ export default {
   data () {
     return {
       sessionId: localStorage.getItem('sessionID'),
-      inWhichPage: 'other',
-      buttonValue: 'Get Booking History'
+      buttonValue: localStorage.getItem('display'),
+      isAdmin: localStorage.getItem('isAdmin')
     }
   },
   methods: {
@@ -41,6 +42,7 @@ export default {
       console.log(this.sessionId)
       axios.post('http://10.177.68.57:8100/loginLogout/logout', obj).then((res) => {
         localStorage.removeItem('sessionID')
+        localStorage.removeItem('isAdmin')
         localStorage.setItem('bookTicketSeatCount', '')
         localStorage.setItem('bookTicketDate', '')
         localStorage.setItem('bookTicketId', '')
@@ -50,16 +52,28 @@ export default {
         window.location.href = 'http://localhost:8080/search'
       })
     },
-    getBookingHistory () {
-      if (this.inWhichPage === 'other') {
-        this.inWhichPage = 'history'
-        this.buttonValue = 'Go back'
-        this.$router.push('/historypane')
-      } else {
-        this.inWhichPage = 'other'
-        this.buttonValue = 'Get Booking History'
-        this.$router.go(-1)
+    logoutAdmin () {
+      const obj = {
+        sessionId: this.sessionId
       }
+      console.log(this.sessionId)
+      axios.post('http://10.177.68.3:8080/logout', obj).then((res) => {
+        localStorage.removeItem('sessionID')
+        localStorage.removeItem('isAdmin')
+        window.location.href = 'http://localhost:8080/search'
+      })
+    },
+    getBookingHistory () {
+      this.$router.push('/historypane')
+    }
+  },
+  created () {
+    if (window.location.href === 'http://localhost:8080/historypane') {
+      localStorage.setItem('display', 'back')
+      this.buttonValue = localStorage.getItem('display')
+    } else {
+      localStorage.setItem('display', 'history')
+      this.buttonValue = localStorage.getItem('display')
     }
   }
 }
@@ -68,6 +82,7 @@ export default {
 <style>
   .navbar{
       z-index: 1;
+      top: 0px;
       height: 60px;
       position: fixed;
       width: 100%;
@@ -109,6 +124,10 @@ export default {
       margin: 0px;
   }
   #getHisotryBtn{
+    position: relative;
+  }
+
+  #goBackBtn{
     position: relative;
   }
 </style>

@@ -1,9 +1,9 @@
 <template>
 <div id="historypane">
     <navbar></navbar>
-    <div>
-    <h1>Booking History</h1>
+    <div class="container">
     <center>
+    <h1>Booking History</h1>
     <table id="historytable">
         <tr>
             <thead>
@@ -11,6 +11,7 @@
                     <th>Booking ID</th>
                     <th>Train ID</th>
                     <th>Train Name</th>
+                    <th>Departure Time</th>
                     <th>Date of Journey</th>
                     <th>Seats Booked</th>
                     <th>Seat List</th>
@@ -21,6 +22,7 @@
                     <td>{{item.bookingId}}</td>
                     <td>{{item.trainId}}</td>
                     <td>{{item.trainName}}</td>
+                    <td>{{item.departureTime}}</td>
                     <td>{{item.dateOfJourney}}</td>
                     <td>{{item.seatCount}}</td>
                     <td>{{item.seatList}}</td>
@@ -44,16 +46,16 @@ export default {
   data () {
     return {
       sessionId: localStorage.getItem('sessionID'),
-      response: []
+      response: JSON.parse(localStorage.getItem('bookingHistoryData'))
     }
   },
   mounted () {
-    const obj = { sessionID: this.sessionId }
-    axios.post('http://10.177.68.57:8082/bookingHistory', obj)
-      .then((res) => {
-        this.response = res.data
-        console.log(this.response)
-      }).catch(err => console.log(err))
+    const obj = {
+      sessionID: localStorage.getItem('sessionID')
+    }
+    axios.post('http://10.177.68.53:8082/bookingHistory', obj).then((res) => {
+      localStorage.setItem('bookingHistoryData', JSON.stringify(res.data))
+    })
   },
   computed: {
     ...mapGetters(['getBookingHistory'])
@@ -64,15 +66,24 @@ export default {
   components: {
     navbar: navbar,
     footerbar: footer
+  },
+  created () {
+    if (localStorage.getItem('sessionID') === null) {
+      this.$router.push('/login')
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 *{
     box-sizing: border-box;
     font-family: Helvetica, sans-serif,Arial;
     background-image: none;
+}
+#historytable{
+  min-width: 800px;
+  width: 800px;
 }
 #historypane {
     text-align: center;
@@ -87,7 +98,6 @@ td{
     border: 2px solid green;
 }
 body{
-    background: none;
-    margin: -8px;
+    background: red;
 }
 </style>

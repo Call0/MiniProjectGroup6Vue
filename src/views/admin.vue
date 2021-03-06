@@ -71,9 +71,12 @@ export default {
         password: this.password
       }
       if (this.validate()) {
-        axios.post('http://10.177.68.57:8100=/admin/loginRailway', obj).then((res) => {
+        axios.post('http://10.177.68.3:8080/admin', obj).then((res) => {
           this.$store.dispatch('setLoginAction', res.data)
-          this.$router.push('/search')
+          localStorage.setItem('sessionID', res.data.sessionID)
+          localStorage.setItem('isAdmin', res.data.isAdmin)
+          console.log(res.data)
+          this.$router.push('/train')
         })
       }
     }

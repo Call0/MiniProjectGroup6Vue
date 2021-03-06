@@ -82,6 +82,8 @@ export default {
           this.$router.push('/confirm')
         })
       } else {
+        localStorage.setItem('bookTicketPassengers', JSON.stringify(obj.passengers))
+        localStorage.setItem('bookTicketSeatCount', obj.seatCount)
         alert('Not Logged In, Login First')
         this.$router.push({ path: '/login', query: { routeto: 'book' } })
       }

@@ -129,6 +129,11 @@ export default {
         })
       }
     }
+  },
+  created () {
+    if (localStorage.getItem('sessionID') !== null) {
+      this.$router.push('/search')
+    }
   }
 }
 </script>

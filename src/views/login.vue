@@ -2,13 +2,13 @@
   <div>
     <center>
       <div id="errors-login">
-          <div>
-            <img src="@/assets/cross-img.png" class="cross" @click="removeerrors">
-            <center>
-              <p class="error-content" id="show-errors-login"></p>
-            </center>
-          </div>
+        <div>
+          <img src="@/assets/cross-img.png" class="cross" @click="removeerrors">
+          <center>
+            <p class="error-content" id="show-errors-login"></p>
+          </center>
         </div>
+      </div>
       <div class="container">
           <div class="inner-container">
               <div class="heading">
@@ -65,16 +65,19 @@ export default {
       }
     },
     onsubmit () {
-      console.log('In submit')
       const obj = {
         userName: this.userName,
         password: this.password
       }
-      console.log(obj)
       if (this.validate()) {
         axios.post('http://10.177.68.57:8100/loginLogout/login', obj).then((res) => {
           localStorage.setItem('sessionID', res.data.sessionID)
           this.$store.dispatch('setLoginAction', res.data.sessionID)
+          if (res.data.sessionID === '') {
+            alert('Invalid Login Credentials')
+            localStorage.removeItem('sessionID')
+            this.$$router.push('/login')
+          }
           if (this.$route.query.routeto === 'book') {
             this.$router.push('/book')
           } else {
@@ -82,6 +85,11 @@ export default {
           }
         })
       }
+    }
+  },
+  created () {
+    if (localStorage.getItem('sessionID') !== null) {
+      this.$router.push('/search')
     }
   },
   components: {

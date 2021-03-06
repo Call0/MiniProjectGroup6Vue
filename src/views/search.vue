@@ -13,8 +13,12 @@
             </center>
           </div>
         </div>
-        <div v-if="response.length == 0" class="search-result">
+        <div v-if="response[0] == 'kwerty'" class="search-result">
           <h1>Search to see available trains</h1>
+          <img src="@/assets/giphy.gif" class="beautify-image" width=80%>
+        </div>
+        <div v-else-if="response.length == 0" class="search-result">
+          <h1>No trains available for this route</h1>
           <img src="@/assets/giphy.gif" class="beautify-image" width=80%>
         </div>
         <div v-else class="search-result">
@@ -27,7 +31,7 @@
               </tr>
               <tr>
                 <td class="left">Departure Time: {{searchElement.departureTime}}</td>
-                <td class="right">Arrival Time: {{searchElement.totalSeats}}</td>
+                <td class="right">Arrival Time: {{searchElement.departureTime}}</td>
               </tr>
               <tr>
                 <td class="left">Date: {{searchElement.date}}</td>
@@ -57,7 +61,7 @@ export default {
       from: '',
       to: '',
       date: '',
-      response: []
+      response: ['kwerty']
     }
   },
   methods: {
@@ -186,7 +190,6 @@ export default {
     border-right: 1px solid #f34f4f;
     height: 100vh;
     float: left;
-    position: fixed;
     box-shadow: 0 0 10px 1px #f34f4f;
   }
 

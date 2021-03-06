@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td class="left">{{ trainId }}</td>
-                    <td class="right">NA</td>
+                    <td class="right">Rs. 2000</td>
                 </tr>
                 <tr>
                     <center>
@@ -75,17 +75,22 @@ export default {
   },
   methods: {
     convertHTMLTOPDF () {
-      var doc = new jsPDF();
-      var elementHTML = $('#myTicket').html();
+      var doc = new jsPDF()
+      var elementHTML = $('#myTicket').html()
       var specialElementHandlers = {
         '#elementH': function (element, renderer) {
-          return true;
+          return true
         }
-      };
+      }
       doc.fromHTML(elementHTML, 30, 30, {
         'width': 100,
         'elementHandlers': specialElementHandlers
-      }, function(){doc.save('Ticket.pdf');});
+      }, function(){doc.save('Ticket.pdf')})
+    }
+  },
+  created () {
+    if (localStorage.getItem('sessionID') === null) {
+      this.$router.push('/login')
     }
   }
 }
