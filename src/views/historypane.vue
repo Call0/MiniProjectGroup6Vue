@@ -1,38 +1,37 @@
 <template>
-<div id="historypane">
+  <div id="historypane">
     <navbar></navbar>
-    <div class="container">
     <center>
-    <h1>Booking History</h1>
-    <table id="historytable">
+    <div class="container">
+      <h1>Booking History</h1>
+      <table id="historytable">
         <tr>
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Train ID</th>
-                    <th>Train Name</th>
-                    <th>Departure Time</th>
-                    <th>Date of Journey</th>
-                    <th>Seats Booked</th>
-                    <th>Seat List</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in response" :key = "item.id">
-                    <td>{{item.bookingId}}</td>
-                    <td>{{item.trainId}}</td>
-                    <td>{{item.trainName}}</td>
-                    <td>{{item.departureTime}}</td>
-                    <td>{{item.dateOfJourney}}</td>
-                    <td>{{item.seatCount}}</td>
-                    <td>{{item.seatList}}</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Train ID</th>
+              <th>Train Name</th>
+              <th>Departure Time</th>
+              <th>Date of Journey</th>
+              <th>Seats Booked</th>
+              <th>Seat List</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in response" :key = "item.id">
+              <td>{{item.bookingId}}</td>
+              <td>{{item.trainId}}</td>
+              <td>{{item.trainName}}</td>
+              <td>{{item.departureTime}}</td>
+              <td>{{item.dateOfJourney}}</td>
+              <td>{{item.seatCount}}</td>
+              <td>{{item.seatList}}</td>
+            </tr>
+          </tbody>
         </tr>
     </table>
+    </div>
     </center>
-</div>
-
 <footerbar></footerbar>
 </div>
 
@@ -77,21 +76,32 @@ export default {
 </script>
 
 <style scoped>
+
+.container{
+  margin-top: 100px;
+  max-width: 1000px;
+  width: 900px;
+  padding: 20px
+}
 #historytable{
   min-width: 800px;
   width: 800px;
+  box-shadow: 0 0 10px 1px gray;
+  margin-bottom: 100px;
 }
+
 #historypane {
-    text-align: center;
+  text-align: center;
+  box-shadow: 0 0 10px 1px gray;
+  margin-bottom: 100px;
 }
 th{
     padding: 40px;
-    border: 2px solid green;
 }
 td{
-    padding: 4px;
+    padding: 10px;
     text-align: center;
-    border: 2px solid green;
+    box-shadow: 0 0 10px 1px gray;
 }
 
 </style>

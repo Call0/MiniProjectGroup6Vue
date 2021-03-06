@@ -10,6 +10,10 @@
                 <td>{{response.fname}} {{response.mname}} {{response.lname}}</td>
             </tr>
             <tr>
+                <td>Username: </td>
+                <td>{{response.userName}}</td>
+            </tr>
+            <tr>
                 <td>Age: </td>
                 <td>{{response.age}}</td>
             </tr>
@@ -47,6 +51,9 @@ export default {
   created () {
     if (localStorage.getItem('sessionID') === null) {
       this.$router.push('/login')
+    }
+    if (localStorage.getItem('isAdmin') === 'true') {
+      this.$router.push('login')
     }
   }
 }
