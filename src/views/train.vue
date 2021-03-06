@@ -62,7 +62,7 @@ export default {
         bogie: this.bogie
       }
       console.log(obj)
-      axios.post('http://10.177.68.3:8080/add', obj).then((res) => {
+      axios.post('http://10.177.68.57:8100/adminPage/add', obj).then((res) => {
         console.log(res)
       })
     }

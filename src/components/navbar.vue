@@ -57,7 +57,7 @@ export default {
         sessionId: this.sessionId
       }
       console.log(this.sessionId)
-      axios.post('http://10.177.68.3:8080/logout', obj).then((res) => {
+      axios.post('http://10.177.68.57:8100/adminPage/logout', obj).then((res) => {
         localStorage.removeItem('sessionID')
         localStorage.removeItem('isAdmin')
         window.location.href = 'http://localhost:8080/search'
