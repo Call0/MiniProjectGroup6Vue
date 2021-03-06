@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td class="left">{{ trainId }}</td>
-                    <td class="right">Rs. 2000</td>
+                    <td class="right">₹ {{ trainFare }}</td>
                 </tr>
                 <tr>
                     <center>
@@ -70,7 +70,8 @@ export default {
       trainEnd: localStorage.getItem('bookTicketEndLocation'),
       trainSeatCount: parseInt(localStorage.getItem('bookTicketSeatCount')),
       trainPassengers: JSON.parse(localStorage.getItem('bookTicketPassengers')),
-      trainSeatList: JSON.parse(localStorage.getItem('bookTicketSeatList'))
+      trainSeatList: JSON.parse(localStorage.getItem('bookTicketSeatList')),
+      trainFare: localStorage.getItem('bookTicketFare')
     }
   },
   methods: {

@@ -4,12 +4,12 @@
         <div class="middle-container">
           <div class="home-container">
             <center>
-              <input type="text" name="from" v-model="from" placeholder="Departure Station" class="input-css">
+              <input type="text" name="from" v-model="from" placeholder="Departure Station" class="input-css" @keyup="validate">
               <img src="@/assets/exchange.png" class="exchange-img" @click="exchangeFromTo">
-              <input type="text" name="to" v-model="to" placeholder="Arrival Station" class="input-css">
+              <input type="text" name="to" v-model="to" placeholder="Arrival Station" class="input-css" @keyup="validate">
               <label for="date" id="label-css-search" class="label-css">Date</label>
-              <input type="date" v-model="date" name="date" @click="limitDate" class="home-label-input-css">
-              <button class="btn" @click="onsubmit">Search</button>
+              <input type="date" v-model="date" name="date" @click="limitDate" class="home-label-input-css" @keyup="validate">
+              <button class="btn" id="searchbtn" @click="onsubmit">Search</button>
             </center>
           </div>
         </div>
@@ -22,7 +22,7 @@
           <img src="@/assets/giphy.gif" class="beautify-image" width=80%>
         </div>
         <div v-else class="search-result">
-          <div v-for="searchElement in getSearchResult" :key="searchElement.id" class="card-view">
+          <div v-for="searchElement in response" :key="searchElement.id" class="card-view">
             <h3>{{searchElement.name}} ({{searchElement.trainId}})</h3>
             <table class="table-css" cellspacing="10px">
               <tr>
@@ -66,6 +66,13 @@ export default {
   },
   methods: {
     ...mapActions(['setSearchResult']),
+    validate () {
+      if (this.from === '' || this.to === '' || this.date === '') {
+        document.getElementById('searchbtn').disabled = true
+      } else {
+        document.getElementById('searchbtn').disabled = false
+      }
+    },
     exchangeFromTo () {
       var from = this.to
       var to = this.from
@@ -80,9 +87,9 @@ export default {
       }
       var url = 'http://10.177.68.57:8100/bookSearch/search'
       axios.post(url, obj).then((res) => {
+        document.getElementById('searchbtn').disabled = false
         this.$router.push('/search?q1=' + this.from + '&q2=' + this.to + '&q3=' + this.date)
         this.response = res.data
-        this.$store.dispatch('setSearchResultAction', res.data)
       })
     },
     onclick (id, start, end, date) {
@@ -114,9 +121,6 @@ export default {
     this.from = query.q1
     this.to = query.q2
     this.date = query.q3
-    console.log(this.from)
-    console.log(this.to)
-    console.log(this.date)
     this.onsubmit()
   }
 }

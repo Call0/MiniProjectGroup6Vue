@@ -76,7 +76,7 @@ export default {
           if (res.data.sessionID === '') {
             alert('Invalid Login Credentials')
             localStorage.removeItem('sessionID')
-            this.$$router.push('/login')
+            this.$router.push('/login')
           }
           if (this.$route.query.routeto === 'book') {
             this.$router.push('/book')

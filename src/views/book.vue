@@ -78,6 +78,7 @@ export default {
           localStorage.setItem('bookTicketPassengers', JSON.stringify(res.data.passengers))
           localStorage.setItem('bookTicketSeatCount', res.data.seatCount)
           localStorage.setItem('bookTicketSeatList', JSON.stringify(res.data.seatList))
+          localStorage.setItem('bookTicketFare', res.data.fare)
           this.$store.dispatch('setBookingResultAction', res.data)
           this.$router.push('/confirm')
         })

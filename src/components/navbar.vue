@@ -7,6 +7,7 @@
           <span v-if="sessionId !== null">
             <button v-if="isAdmin !== 'true'" class="router"  v-on:click="logout">Logout</button>
             <button v-else class="router"  v-on:click="logoutAdmin">Logout Admin</button>
+            <button class="router"  v-on:click="userProfile">User Profile</button>
             <button v-if="buttonValue === 'history' || buttonValue === null" class="router" id ="getHistoryBtn" @click="getBookingHistory">Booking History</button>
             <button v-else-if="buttonValue === 'back'" class="router" id ="goBackBtn" @click="goback">Go Back</button>
             </span>
@@ -65,6 +66,9 @@ export default {
     },
     getBookingHistory () {
       this.$router.push('/historypane')
+    },
+    userProfile () {
+      this.$router.push('/userprofile')
     }
   },
   created () {

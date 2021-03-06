@@ -9,6 +9,7 @@ import book from '@/views/book.vue'
 import confirm from '@/views/confirm.vue'
 import route from '@/views/route.vue'
 import admin from '@/views/admin.vue'
+import userprofile from '@/views/userprofile.vue'
 import historypane from '@/views/historypane.vue'
 
 Vue.use(VueRouter)
@@ -48,6 +49,11 @@ const routes = [
     path: '/historypane',
     name: 'Historypane',
     component: historypane
+  },
+  {
+    path: '/userprofile',
+    name: 'Userprofile',
+    component: userprofile
   },
   {
     path: '/confirm',

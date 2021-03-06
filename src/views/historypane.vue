@@ -31,8 +31,9 @@
         </tr>
     </table>
     </center>
-    <footerbar></footerbar>
 </div>
+
+<footerbar></footerbar>
 </div>
 
 </template>
@@ -46,7 +47,7 @@ export default {
   data () {
     return {
       sessionId: localStorage.getItem('sessionID'),
-      response: JSON.parse(localStorage.getItem('bookingHistoryData'))
+      response: ''
     }
   },
   mounted () {
@@ -54,7 +55,7 @@ export default {
       sessionID: localStorage.getItem('sessionID')
     }
     axios.post('http://10.177.68.53:8082/bookingHistory', obj).then((res) => {
-      localStorage.setItem('bookingHistoryData', JSON.stringify(res.data))
+      this.response = res.data
     })
   },
   computed: {
@@ -76,11 +77,6 @@ export default {
 </script>
 
 <style scoped>
-*{
-    box-sizing: border-box;
-    font-family: Helvetica, sans-serif,Arial;
-    background-image: none;
-}
 #historytable{
   min-width: 800px;
   width: 800px;
@@ -97,7 +93,5 @@ td{
     text-align: center;
     border: 2px solid green;
 }
-body{
-    background: red;
-}
+
 </style>

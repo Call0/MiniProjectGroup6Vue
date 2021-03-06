@@ -54,22 +54,20 @@ export default {
     onsubmit () {
       this.departureTime = this.convertTime()
       const obj = {
-        trainId: this.id,
-        name: this.name,
-        startLocation: this.startLocation,
-        endLocation: this.endLocation,
-        departureTime: this.departureTime,
+        trainId: this.id.toLowerCase,
+        name: this.name.toLowerCase,
+        startLocation: this.startLocation.toLowerCase,
+        endLocation: this.endLocation.toLowerCase,
+        departureTime: this.departureTime.toLowerCase,
         bogie: this.bogie
       }
-      console.log(obj)
       axios.post('http://10.177.68.57:8100/adminPage/add', obj).then((res) => {
-        console.log(res)
       })
     }
   },
   created () {
     if (localStorage.getItem('isAdmin') !== 'true') {
-      this.$router.push('/search')
+      this.$router.push('/admin')
     }
   }
 }
