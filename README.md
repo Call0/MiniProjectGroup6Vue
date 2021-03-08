@@ -26,10 +26,10 @@ Do the same for the next files (line no.'s are specified)
 
 Open the project in VS Code. Then run the following commands in the integrated terminal.
 <li>npm install</li>
-<li>npm run serve</li> -> to run the project
-<li>npm run build</li> -> Compiles and minifies for production
-<li>npm run lint</li> -> lint and fixes
-<br>
+<li>To run the project -> <b>npm run serve</b></li>
+<li>Compiles and minifies for production -> <b>npm run build</b></li>
+<li>Lint and fixes -> <b>npm run lint</b></li>
+
 ## Project setup
 ```
 npm install
