@@ -1,10 +1,10 @@
 # Project Title: Railway Reservation System (Using Vue + Springboot)
-This is the frontend repository for Railway Reservation System - 
-(for zuul configuration repository go to: https://github.com/sujoydey13/ZuulApp)
-(for backend Booking and Searching Microservice repository go to: https://github.com/GamerbutCoder/RailwayBookingandSearching)
-(for backend Login Microservice repository go to: https://github.com/GamerbutCoder/RailwayLogin)
-(for Register Microservice repository go to: https://github.com/GamerbutCoder/RailwayRegistration)
-(for SearchAPI Microservice repository go to: https://github.com/GamerbutCoder/railwaySearchAPI)
+This is the frontend repository for Railway Reservation System - <br>
+(for zuul configuration repository go to: https://github.com/sujoydey13/ZuulApp) <br>
+(for backend Booking and Searching Microservice repository go to: https://github.com/GamerbutCoder/RailwayBookingandSearching) <br>
+(for backend Login Microservice repository go to: https://github.com/GamerbutCoder/RailwayLogin) <br>
+(for Register Microservice repository go to: https://github.com/GamerbutCoder/RailwayRegistration) <br>
+(for SearchAPI Microservice repository go to: https://github.com/GamerbutCoder/railwaySearchAPI) <br>
 
 <h2>Requirements</h2>
 <li>Visual Studio Code (VS Code)</li>
