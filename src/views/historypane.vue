@@ -1,6 +1,7 @@
 <template>
-  <div id="historypane">
+  <div>
     <navbar></navbar>
+  <div id="historypane">
     <center>
     <div class="container">
       <h1>Booking History</h1>
@@ -33,6 +34,7 @@
     </div>
     </center>
 <footerbar></footerbar>
+</div>
 </div>
 
 </template>
