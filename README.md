@@ -12,16 +12,16 @@ This is the frontend repository for Railway Reservation System - <br>
 <li>All backend microservices mentioned above</li>
 
 The following files contain the axios post requests, in order to run the project, you must change the IP address and Port number provided in the url paths of axios post requests for these files based on the <b>zuul configurations</b>.
-<li>src/components/navbar.vue --> </li> 
-<li>src/components/admin.vue --> </li>
-<li>src/components/book.vue --> </li>
-<li>src/components/historypane.vue --> </li>
-<li>src/components/login.vue --> </li>
-<li>src/components/register.vue --> </li>
-<li>src/components/search.vue --> </li>
-<li>src/components/train.vue --> </li>
-<li>src/components/userprofile.vue --> </li>
-<li>src/components/route.vue --> not configured with zuul</li>
+<li>src/components/navbar.vue --> Line no. 44, change IP address and port number in url path in axios post request with the IP address and port number (on which Zuul is running) of the machine running Zuul configurations</li> <br>
+Do the same for the next files (line no.'s are specified)
+<li>src/components/admin.vue --> Line no. 74</li>
+<li>src/components/book.vue --> Line no. 74</li>
+<li>src/components/historypane.vue --> Line no. 58</li>
+<li>src/components/login.vue --> Line no. 73</li>
+<li>src/components/register.vue --> Line no. 126</li>
+<li>src/components/search.vue --> Line no. 88</li>
+<li>src/components/train.vue --> Line no. 64</li>
+<li>src/components/userprofile.vue --> Line no. 47</li>
 
 Open the project in VS Code
 ## Project setup
