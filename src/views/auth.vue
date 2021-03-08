@@ -24,6 +24,9 @@ export default {
         this.$router.push('/search')
       })
     }
+  },
+  created () {
+    this.$router.push('/search')
   }
 }
 </script>
