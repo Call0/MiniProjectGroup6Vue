@@ -55,7 +55,7 @@ export default {
     const obj = {
       sessionID: localStorage.getItem('sessionID')
     }
-    axios.post('http://10.177.68.53:8082/bookingHistory', obj).then((res) => {
+    axios.post('http://10.177.68.57:8100/bookSearch/bookingHistory', obj).then((res) => {
       this.response = res.data
     })
   },
