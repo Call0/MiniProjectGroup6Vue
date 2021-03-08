@@ -26,7 +26,8 @@ Do the same for the next files (line no.'s are specified) <br>
 <li>src/components/train.vue --> Line no. 64</li>
 <li>src/components/userprofile.vue --> Line no. 47</li>
 <br>
-Open the project in VS Code. Then run the following commands in the integrated terminal.
+Open the project in VS Code. Then run the following commands in the integrated terminal. <br>
+<br>
 <li><b>npm install</b></li>
 <li>To run the project -> <b>npm run serve</b></li>
 <li>Compiles and minifies for production -> <b>npm run build</b></li>
